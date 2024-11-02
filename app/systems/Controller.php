@@ -2,19 +2,6 @@
 
 class Controller
 {
-  // Register process
-  public function process($process)
-  {
-    require_once 'app/process/' . $process . '.php';
-    return new $process;
-  }
-
-  // Register view
-  public function view($view, $data = [])
-  {
-    require_once 'app/views/' . $view . '.php';
-  }
-
   // Register model
   public function model($model)
   {
@@ -22,62 +9,245 @@ class Controller
     return new $model;
   }
 
-  // Register api
-  public function api($var, $exit = false)
+  public function api($methods)
   {
-    echo '<pre>';
-    if (is_array($var) || is_object($var)) {
-      echo '<code>';
-      print_r($var);
-      echo '</code>';
-    } else {
-      echo (htmlspecialchars($var) . '<br>');
-    }
-    echo '</pre>';
-    if ($exit) {
-      exit();
+    switch (trim($methods)) {
+      case 'GET':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'POST':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'PUT':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'GET POST':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'POST'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'GET PUT':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'PUT'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'GET DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'DELETE'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'POST PUT':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PUT'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'POST DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'DELETE'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'PUT DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['PUT', 'DELETE'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'GET POST PUT':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'POST', 'PUT'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'GET POST DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'POST', 'DELETE'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'GET PUT DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'PUT', 'DELETE'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'POST PUT DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PUT', 'DELETE'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      case 'GET POST PUT DELETE':
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: $methods");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+        if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'POST', 'PUT', 'DELETE'])) {
+          header('HTTP/1.1 405');
+          http_response_code(405);
+          echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+          exit;
+        }
+        break;
+      default:
+        header('HTTP/1.1 400');
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "Method Not Found"]);
+        break;
     }
   }
 
-  // Register dd
-  public function dd($var, $exit = false)
+  public function code($code, $message, $data = NULL, $type = 'front')
   {
-    echo '<pre>';
-    echo '<div style="border: 2px solid #ccc; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">';
-    echo '<strong style="color: #FF5733;">Debug Output:</strong><br><br>';
-    if (is_array($var) || is_object($var)) {
-      echo '<code>';
-      print_r($var);
-      echo '</code>';
-    } else {
-      if (gettype($var) == 'boolean') {
-        if (htmlspecialchars($var) == true) {
-          echo '<strong>Value:</strong> ' . htmlspecialchars($var) . ' / true' . '<br>';
-        } else {
-          echo '<strong>Value:</strong> 0 / false<br>';
-        }
-      } else {
-        echo '<strong>Value:</strong> ' . htmlspecialchars($var) . '<br>';
+    function response($code)
+    {
+      header('HTTP/1.1 ' . $code);
+      http_response_code($code);
+      switch ($code) {
+        case '200':
+          return ($status = 'Ok');
+        case '400':
+          return ($status = 'Bad Request');
+        case '404':
+          return ($status = 'Not Found');
+        case '503':
+          return ($status = 'Service Unavailable');
+        case 'value':
+          $status = '';
+          break;
+
+        default:
+          break;
       }
     }
-
-    echo '<div style="margin-top: 10px;">';
-    echo '<strong style="color: #FF5733;">Type:</strong> ' . gettype($var);
-
-    if (is_object($var)) {
-      echo ' | <strong style="color: #FF5733;">Class:</strong> ' . get_class($var);
+    switch ($type) {
+      case 'front':
+        $status = response($code);
+        if (!$data) {
+          echo json_encode(array("status" => $status, "message" => $message));
+        } else {
+          echo json_encode(array(array("status" => $status, "message" => $message), $data));
+        }
+        break;
+      case 'back':
+        $status = response($code);
+        if (!$data) {
+          return (json_encode(array("status" => $status, "message" => $message)));
+        } else {
+          return (json_encode(array(array("status" => $status, "message" => $message), $data)));
+        }
+      default:
+        # code...
+        break;
     }
+  }
 
-    if (is_array($var) || is_object($var)) {
-      echo ' | <strong style="color: #FF5733;">Count:</strong> ' . count((array)$var);
-    }
-
-    echo '</div>';
-    echo '</div>';
-    echo '</pre>';
-
-    if ($exit) {
-      exit();
-    }
+  public function dd($text1, $text2 = NULL)
+  {
+    echo json_encode(array($text1, array($text2)));
   }
 }

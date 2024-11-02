@@ -18,5 +18,6 @@ define('DB_PASS', $ENV['DB_PASS']);
 define('DB_NAME', $ENV['DB_NAME']);
 
 // SALT
-define('SALT_COOKIE', $ENV['SALT_COOKIE']);
-define('SALT_PASS', $ENV['SALT_PASS']);
+define('SALT_TOKEN', $ENV['SALT_TOKEN']);
+// define('SALT_COOKIE', $ENV['SALT_COOKIE']);
+// define('SALT_PASS', $ENV['SALT_PASS']);
