@@ -2,6 +2,8 @@
   "recommendations": [
     "robbowen.synthwave-vscode",
     "felixfbecker.php-intellisense",
-    "devsense.phptools-vscode"
+    "devsense.phptools-vscode",
+    "zobo.php-intellisense",
+    "mehedidracula.php-namespace-resolver"
   ]
 }

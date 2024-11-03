@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Systems\Controller;
+
 class Error404 extends Controller
 {
   public function __construct()

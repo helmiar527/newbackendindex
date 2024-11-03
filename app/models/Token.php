@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Systems\Database;
+
 class Token
 {
   private $table = 'token';

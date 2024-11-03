@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Systems\Database;
+
 class AccModel
 {
   private $table = 'accUser';

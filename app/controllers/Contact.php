@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Systems\Controller;
+
 require_once 'Index.php';
 
 class Contact extends Controller
@@ -22,7 +24,7 @@ class Contact extends Controller
         $indexController = (new Index())->index($_POST['token']);
         $_POST['device'] = $_SERVER['HTTP_USER_AGENT'];
         if (!empty($indexController[1])) {
-          if($this->model('Contact')->Add($_POST) < 0){
+          if ($this->model('Contact')->Add($_POST) < 0) {
             $this->code('503', 'Server are down');
           } else {
             $this->code('200', 'Contact has send');

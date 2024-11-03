@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Systems\Controller;
+
 class Index extends Controller
 {
   public function __construct()
