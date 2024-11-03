@@ -1,6 +1,7 @@
 <?php
 
-namespace app\controllers;
+namespace App\Controllers;
+
 require_once 'Index.php';
 
 class Contact extends Controller

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Systems;
+
 class App
 {
   protected $controller = Home;

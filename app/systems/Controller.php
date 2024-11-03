@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Systems;
+
 class Controller
 {
   // Register model

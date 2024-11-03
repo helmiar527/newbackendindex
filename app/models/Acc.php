@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class AccModel
 {
   private $table = 'accUser';

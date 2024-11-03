@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 class Error404 extends Controller
 {
   public function __construct()
