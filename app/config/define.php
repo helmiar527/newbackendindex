@@ -1,5 +1,7 @@
 <?php
-require_once 'config.php';
+
+// Load config
+require_once __DIR__ . '/config.php';
 
 // URL
 define('ROOT', $rootdoc);
@@ -8,8 +10,8 @@ define('BASEURL', $protocol . $host . $path);
 define('USERURL', $protocol . $host . $path . $rootuser);
 
 // Method dan Index Default
-define('Home', $ENV['METHOD_URL']); //method
-define('index', $ENV['INDEX_URL']); //index
+define('HOME', $ENV['METHOD_URL']); //method
+define('INDEX', $ENV['INDEX_URL']); //index
 
 // Database
 define('DB_HOST', $ENV['DB_HOST']);
@@ -18,6 +20,8 @@ define('DB_PASS', $ENV['DB_PASS']);
 define('DB_NAME', $ENV['DB_NAME']);
 
 // SALT
-define('SALT_TOKEN', $ENV['SALT_TOKEN']);
-// define('SALT_COOKIE', $ENV['SALT_COOKIE']);
-// define('SALT_PASS', $ENV['SALT_PASS']);
+// define('SALT_TOKEN', $ENV['SALT_TOKEN']);
+define('SALT_API', $ENV['SALT_API']);
+
+// API
+define('SERVER_API_KEY', $ENV['SERVER_API_KEY']);

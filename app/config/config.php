@@ -1,6 +1,7 @@
 <?php
 
-require_once 'process-config.php';
+// Load Process Config
+require_once __DIR__ . '/process-config.php';
 
 // ROOT PATH
 $rootdoc = $_SERVER['DOCUMENT_ROOT'];

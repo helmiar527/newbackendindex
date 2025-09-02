@@ -5,7 +5,7 @@ namespace App\Systems;
 
 class Database
 {
-  // Register variable
+  // Definisikan konstanta
   private $host = DB_HOST;
   private $user = DB_USER;
   private $pass = DB_PASS;
@@ -13,7 +13,7 @@ class Database
   private $dbh;
   private $stmt;
 
-  // Auto connect
+  // Testing connect
   public function __construct()
   {
     $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
@@ -33,6 +33,8 @@ class Database
   {
     $this->stmt = $this->dbh->prepare($query);
   }
+
+  // Process bind value
   public function bind($param, $value, $type = null)
   {
     if (is_null($type)) {
@@ -52,20 +54,28 @@ class Database
     }
     $this->stmt->bindValue($param, $value, $type);
   }
+
+  // Process execute
   public function execute()
   {
     $this->stmt->execute();
   }
+
+  // Process result set to all
   public function resultSet()
   {
     $this->execute();
     return $this->stmt->fetchAll(\PDO::FETCH_ASSOC);
   }
+
+  // Process result set to single
   public function single()
   {
     $this->execute();
     return $this->stmt->fetch(\PDO::FETCH_ASSOC);
   }
+
+  // Process result to row count
   public function rowCount()
   {
     return $this->stmt->rowCount();

@@ -11,3 +11,4 @@ Require all denied
 
 php_value post_max_size 1G
 php_value upload_max_filesize 1G
+php_value date.timezone 'Asia/Jakarta'
